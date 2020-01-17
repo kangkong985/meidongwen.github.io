@@ -729,9 +729,6 @@ OnRxWindowTimerEvent  -  RxWindowSetup  -  SX1276SetRx(Radio.Rx)
 
 # Timer
 
-
-## How does a timer work?
-
 - TimerEvent_t
 
     ```timer.h
@@ -753,8 +750,6 @@ OnRxWindowTimerEvent  -  RxWindowSetup  -  SX1276SetRx(Radio.Rx)
     - obj->IsRunning = false：初始化时默认停止
     - obj->Callback = callback：回调函数
     - obj->Next = NULL：在TimerList( 链表 )中的下一个timer
-
-- 
 
 - TimerSetValue
 
@@ -879,6 +874,16 @@ RtcSetTimeout( obj->Timestamp );
 但对于移动的节点，准确来说，是通讯环境会变化的节点，适合ADR OFF，
 
 因为移动的过程中，可能出现因为通讯环境太恶劣而断连的情况，节点发送时会测试通讯环境而使用合适的daterate，而不会直接使用DR_0(SF12)，以此来节省电源消耗，但如果通讯环境很差，调节到DR_0仍然不能正常通讯，那么节点就会进入睡眠状态，经过一段时间后在醒来发送报文，如果依旧通讯环境很差，那么会再次进入睡眠，且睡眠的时间会一次比一次长。
+
+
+
+# Duty Cycle
+
+REGION_CN470：RegionCN470.h，默认CN470_DUTY_CYCLE_ENABLED为0，关闭
+
+REGION_EU433：RegionEU433.h，默认CN470_DUTY_CYCLE_ENABLED为1，打开，
+
+
 
 
 
